@@ -1,0 +1,19 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "target": "es2020",
+    "paths": {
+      "@user/*": ["src/modules/user/*"],
+      "@product/*": ["src/modules/product/*"]
+    },
+    "baseUrl": "."
+  },
+  "module": {
+    "type": "commonjs"
+  }
+}
