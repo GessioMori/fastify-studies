@@ -1,15 +1,19 @@
+import 'reflect-metadata';
+import './utils/containers';
+import { userRoutes } from '@user/routes';
+import { userSchemas } from '@user/schemas';
 import fastify from 'fastify';
 
 const server = fastify({
   logger: true
 });
 
-server.get('/', async (request, reply) => {
-  return { hello: 'world' };
-});
-
 const start = async () => {
   try {
+    for (const schema of userSchemas) {
+      server.addSchema(schema);
+    }
+    await server.register(userRoutes, { prefix: '/users' });
     await server.listen({ port: 3000 });
   } catch (err) {
     server.log.error(err);
